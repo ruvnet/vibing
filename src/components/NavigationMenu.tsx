@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Info, HelpCircle, Settings, Terminal, Power, Menu, X, ChevronLeft } from 'lucide-react';
+import { Info, HelpCircle, Settings, Terminal, Power, Menu, X, ChevronLeft, MessageCircle } from 'lucide-react';
 import NavButton from './NavButton';
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
@@ -191,6 +192,13 @@ const NavigationMenu: React.FC = () => {
     }
   ];
 
+  // Function to handle closing drawer and returning to main message UI
+  const handleReturnToMessages = () => {
+    setActiveScreen(null);
+    setIsDrawerOpen(false);
+    // Add any additional logic needed to return to main message UI
+  };
+
   const handleNavButtonClick = (screenId: string) => {
     if (activeScreen === screenId) {
       setActiveScreen(null);
@@ -328,6 +336,15 @@ const NavigationMenu: React.FC = () => {
             <div className="p-4">
               <h2 className="text-[#33FF00] font-micro mb-4 uppercase tracking-widest text-center">SYSTEM MENU</h2>
               <div className="space-y-2">
+                {/* Main Messages option as the first item */}
+                <button 
+                  className="w-full p-3 border border-[#33FF00]/30 bg-[#111] hover:bg-[#222] text-[#33FF00] font-micro uppercase text-sm transition-colors text-left flex items-center"
+                  onClick={handleReturnToMessages}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  MAIN MESSAGES
+                </button>
+                
                 {screens.map(screen => (
                   <button 
                     key={screen.id}
