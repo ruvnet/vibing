@@ -111,6 +111,22 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
     };
   }, [open, onComplete]);
 
+  // 8-bit style rUv logo using ASCII art
+  const ruvLogo = (
+    <div className="text-center my-4 font-micro text-[#33FF00] text-xs leading-tight">
+      <pre className="inline-block">
+{`
+ ██████  ██    ██ ██    ██ 
+ ██   ██ ██    ██ ██    ██ 
+ ██████  ██    ██ ██    ██ 
+ ██   ██ ██    ██  ██  ██  
+ ██   ██  ██████    ████   
+`}
+      </pre>
+      <div className="text-[10px] mt-1">AGENTIC ENGINEER SINCE 1986</div>
+    </div>
+  );
+
   return (
     <Dialog open={open} modal>
       <DialogContent className="bg-cyber-black border-[#33FF00]/30 p-6 max-w-sm mx-auto font-micro text-[#33FF00] dot-matrix-container" aria-describedby="loading-description">
@@ -120,7 +136,10 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
             RUVIX OS1.9z
           </div>
           
-          <div className="h-48 md:h-64 overflow-y-auto mb-4 text-xs pr-1">
+          {/* 8-bit style rUv logo */}
+          {ruvLogo}
+          
+          <div className="h-48 md:h-56 overflow-y-auto mb-4 text-xs pr-1">
             {visibleMessages.map((message, index) => (
               <div key={index} className="mb-1 fade-in">
                 {"> "}{message}
