@@ -1,13 +1,16 @@
+
 import React, { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/NotificationPanel';
 import { Terminal } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationMenu from '@/components/NavigationMenu';
 import LoadingScreen from '@/components/LoadingScreen';
+import CommandPrompt from '@/components/CommandPrompt';
 
 const Index = () => {
   const isMobile = useIsMobile();
   const [showLoading, setShowLoading] = useState(true);
+  const [showCommandPrompt, setShowCommandPrompt] = useState(false);
   
   // Auto-hide loading screen after it completes with a reduced delay
   const handleLoadingComplete = () => {
@@ -41,7 +44,14 @@ const Index = () => {
             </div>
             
             <div className="flex-1 flex flex-col min-h-0">
-              <NotificationPanel />
+              {showCommandPrompt ? (
+                <CommandPrompt 
+                  isOpen={showCommandPrompt} 
+                  onClose={() => setShowCommandPrompt(false)} 
+                />
+              ) : (
+                <NotificationPanel />
+              )}
             </div>
             
             <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
@@ -53,14 +63,17 @@ const Index = () => {
           <NavigationMenu />
         </div>
         
-        {/* Terminal footer */}
+        {/* Terminal footer with command prompt toggle */}
         <div className="bg-[#111] border border-[#33FF00]/30 rounded-sm mt-2 md:mt-4 p-1 md:p-2 flex justify-between items-center">
           <div className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs tracking-widest">
             MEM: 64K
           </div>
-          <div className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs tracking-widest">
-            CPU: 4MHz
-          </div>
+          <button
+            onClick={() => setShowCommandPrompt(!showCommandPrompt)}
+            className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs tracking-widest hover:text-[#33FF00] transition-colors"
+          >
+            {showCommandPrompt ? "CLOSE CMD" : "OPEN CMD"}
+          </button>
           <div className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs tracking-widest">
             SYS: READY
           </div>

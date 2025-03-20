@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { Info, HelpCircle, Settings, Terminal, Power, Menu, X } from 'lucide-react';
 import NavButton from './NavButton';
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { cn } from '@/lib/utils';
+import CommandPrompt from './CommandPrompt';
 
 interface NavigationScreen {
   id: string;
@@ -26,8 +26,8 @@ const NavigationMenu: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [confirmPowerAction, setConfirmPowerAction] = useState<PowerAction | null>(null);
+  const [showCommandPrompt, setShowCommandPrompt] = useState(false);
   
-  // Define power actions
   const powerActions: PowerAction[] = [
     {
       id: 'restart',
@@ -38,7 +38,6 @@ const NavigationMenu: React.FC = () => {
       hoverColor: 'hover:bg-[#222]',
       action: () => {
         console.log('System restart initiated');
-        // Simulating a restart by reloading the page
         setTimeout(() => {
           window.location.reload();
         }, 1500);
@@ -53,7 +52,6 @@ const NavigationMenu: React.FC = () => {
       hoverColor: 'hover:bg-[#222]',
       action: () => {
         console.log('Sleep mode activated');
-        // Simulate sleep mode (just a visual effect)
         document.body.classList.add('sleep-mode');
         setTimeout(() => {
           document.body.classList.remove('sleep-mode');
@@ -69,7 +67,6 @@ const NavigationMenu: React.FC = () => {
       hoverColor: 'hover:bg-[#220000]',
       action: () => {
         console.log('System shutdown initiated');
-        // Simulate shutdown (fade to black)
         document.body.classList.add('shutdown');
         setTimeout(() => {
           document.body.classList.add('shutdown-complete');
@@ -148,19 +145,26 @@ const NavigationMenu: React.FC = () => {
       content: (
         <div className="p-4">
           <h2 className="text-[#33FF00] font-micro mb-4 uppercase tracking-widest">Command Line</h2>
-          <div className="font-micro text-[#33FF00]/70 text-sm mb-4 h-40 overflow-y-auto border border-[#33FF00]/30 p-2 bg-black/50">
-            <p>MWAC-OS v3.2.7</p>
-            <p>READY.</p>
-            <p>{`C:\\>`} _</p>
-          </div>
-          <div className="border border-[#33FF00]/30 p-2 bg-black/50 flex">
-            <span className="text-[#33FF00] mr-2">{`C:\\>`}</span>
-            <input 
-              type="text" 
-              className="bg-transparent border-none outline-none text-[#33FF00] font-micro text-sm w-full" 
-              placeholder="Type command..."
+          {showCommandPrompt ? (
+            <CommandPrompt 
+              isOpen={showCommandPrompt} 
+              onClose={() => setShowCommandPrompt(false)} 
             />
-          </div>
+          ) : (
+            <>
+              <div className="font-micro text-[#33FF00]/70 text-sm mb-4 h-40 overflow-y-auto border border-[#33FF00]/30 p-2 bg-black/50">
+                <p>MWAC-OS v3.2.7</p>
+                <p>READY.</p>
+                <p>{`C:\\>`} _</p>
+              </div>
+              <button 
+                onClick={() => setShowCommandPrompt(true)}
+                className="w-full border border-[#33FF00]/30 p-2 bg-black/50 flex justify-center items-center text-[#33FF00] hover:bg-[#111] transition-colors"
+              >
+                OPEN TERMINAL
+              </button>
+            </>
+          )}
         </div>
       )
     },
@@ -195,7 +199,6 @@ const NavigationMenu: React.FC = () => {
     }
   };
 
-  // Desktop Navigation
   const renderDesktopNav = () => (
     <div className="grid grid-cols-5 gap-1 md:gap-3 mt-1 md:mt-2">
       <NavButton 
@@ -226,7 +229,6 @@ const NavigationMenu: React.FC = () => {
     </div>
   );
 
-  // Mobile Navigation
   const renderMobileNav = () => (
     <div className="grid grid-cols-5 gap-1 md:gap-3 mt-1 md:mt-2">
       <NavButton 
@@ -257,7 +259,6 @@ const NavigationMenu: React.FC = () => {
     </div>
   );
 
-  // Render active screen content
   const activeScreenContent = () => {
     const screen = screens.find(s => s.id === activeScreen);
     
@@ -277,7 +278,6 @@ const NavigationMenu: React.FC = () => {
 
   return (
     <>
-      {/* Responsive navigation */}
       <div className="hidden md:block">
         {renderDesktopNav()}
       </div>
@@ -285,14 +285,12 @@ const NavigationMenu: React.FC = () => {
         {renderMobileNav()}
       </div>
 
-      {/* Main content drawer for mobile and active screens */}
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
         <DrawerContent className="bg-black p-4 max-h-[85vh] border-t border-[#33FF00]/30">
           <DrawerClose className="absolute right-4 top-4 text-[#33FF00]">
             <X className="h-5 w-5" />
           </DrawerClose>
           
-          {/* Show drawer menu on mobile or activeScreenContent */}
           {activeScreen ? (
             activeScreenContent()
           ) : (
@@ -316,14 +314,12 @@ const NavigationMenu: React.FC = () => {
         </DrawerContent>
       </Drawer>
 
-      {/* Desktop active screen content */}
       {activeScreen && !isDrawerOpen && (
         <div className="mt-4 hidden md:block">
           {activeScreenContent()}
         </div>
       )}
 
-      {/* Power action confirmation dialog */}
       <AlertDialog open={confirmPowerAction !== null} onOpenChange={(open) => !open && setConfirmPowerAction(null)}>
         <AlertDialogContent className="bg-black border-2 border-[#33FF00]/30 p-6 font-micro text-[#33FF00] dot-matrix-container max-w-sm animate-[scale-in_0.2s_ease-out,fade-in_0.3s_ease-out]">
           <AlertDialogHeader>
