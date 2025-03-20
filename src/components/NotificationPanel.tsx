@@ -80,10 +80,18 @@ const NotificationPanel: React.FC = () => {
     setShowRuvServices(false);
   };
 
+  const returnToMainView = () => {
+    setSelectedNotification(null);
+    setShowRuvServices(false);
+  };
+
   return (
     <div className="bg-[#111]/80 border border-[#33FF00]/20 p-4 pt-2 w-full h-full mx-auto flex flex-col fade-in-delay-1 relative overflow-hidden">
-      {/* Console Header Bar */}
-      <div className="flex items-center justify-between mb-4 border-b border-[#33FF00]/30 pb-2">
+      {/* Console Header Bar - Now Clickable */}
+      <div 
+        className="flex items-center justify-between mb-4 border-b border-[#33FF00]/30 pb-2 cursor-pointer hover:border-[#33FF00]/60 transition-colors"
+        onClick={returnToMainView}
+      >
         <div className="flex items-center">
           <div className="h-2 w-2 bg-[#33FF00] mr-2 animate-pulse-slow"></div>
           <h2 className="text-[#33FF00]/70 font-micro uppercase tracking-widest text-sm md:text-lg">
