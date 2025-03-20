@@ -1,8 +1,9 @@
 
 import React from 'react';
 import NotificationPanel from '@/components/NotificationPanel';
-import { Terminal, Info, Power, HelpCircle, Settings, Menu } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import NavigationMenu from '@/components/NavigationMenu';
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -36,65 +37,7 @@ const Index = () => {
           </div>
           
           {/* Control panel */}
-          <div className="grid grid-cols-5 gap-1 md:gap-3 mt-1 md:mt-2">
-            {isMobile ? (
-              // Mobile view: collapse some buttons
-              <>
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Menu className="h-4 w-4 md:h-5 md:w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs mt-1 group-hover:text-[#33FF00]">MENU</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Info className="h-4 w-4 md:h-5 md:w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs mt-1 group-hover:text-[#33FF00]">INFO</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <HelpCircle className="h-4 w-4 md:h-5 md:w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs mt-1 group-hover:text-[#33FF00]">HELP</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Settings className="h-4 w-4 md:h-5 md:w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs mt-1 group-hover:text-[#33FF00]">CONFIG</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Power className="h-4 w-4 md:h-5 md:w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-[8px] md:text-xs mt-1 group-hover:text-[#33FF00]">POWER</span>
-                </button>
-              </>
-            ) : (
-              // Desktop view: show all buttons
-              <>
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Info className="h-5 w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-xs mt-1 group-hover:text-[#33FF00]">INFO</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <HelpCircle className="h-5 w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-xs mt-1 group-hover:text-[#33FF00]">HELP</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Settings className="h-5 w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-xs mt-1 group-hover:text-[#33FF00]">CONFIG</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Terminal className="h-5 w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-xs mt-1 group-hover:text-[#33FF00]">CMDS</span>
-                </button>
-                
-                <button className="bg-[#111] border border-[#33FF00]/30 p-2 rounded-sm flex flex-col items-center justify-center hover:bg-[#222] transition-colors group">
-                  <Power className="h-5 w-5 text-[#33FF00]/70 group-hover:text-[#33FF00]" />
-                  <span className="text-[#33FF00]/70 font-micro text-xs mt-1 group-hover:text-[#33FF00]">POWER</span>
-                </button>
-              </>
-            )}
-          </div>
+          <NavigationMenu />
         </div>
         
         {/* Terminal footer */}
