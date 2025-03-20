@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Info, HelpCircle, Settings, Terminal, Power, Menu, X } from 'lucide-react';
+import { Info, HelpCircle, Settings, Terminal, Power, Menu, X, ChevronLeft } from 'lucide-react';
 import NavButton from './NavButton';
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { cn } from '@/lib/utils';
 import CommandPrompt from './CommandPrompt';
+import { Button } from './ui/button';
 
 interface NavigationScreen {
   id: string;
@@ -267,8 +268,27 @@ const NavigationMenu: React.FC = () => {
     return (
       <div className="bg-[#111] border-2 border-[#33FF00]/30 rounded-sm p-2 md:p-4 dot-matrix-container relative">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
-        <div className="text-[#33FF00] font-micro uppercase tracking-widest text-center mb-2 md:mb-4 text-xs md:text-base">
-          {screen.title}
+        <div className="flex justify-between items-center mb-2 md:mb-4">
+          <Button 
+            variant="ghost"
+            size="sm"
+            className="text-[#33FF00]/70 hover:text-[#33FF00] hover:bg-transparent p-0"
+            onClick={() => setActiveScreen(null)}
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            <span className="font-micro uppercase text-xs">Back</span>
+          </Button>
+          <div className="text-[#33FF00] font-micro uppercase tracking-widest text-center text-xs md:text-base">
+            {screen.title}
+          </div>
+          <Button 
+            variant="ghost"
+            size="sm"
+            className="text-[#33FF00]/70 hover:text-[#33FF00] hover:bg-transparent p-0"
+            onClick={() => setActiveScreen(null)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
         </div>
         {screen.content}
         <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
@@ -292,7 +312,18 @@ const NavigationMenu: React.FC = () => {
           </DrawerClose>
           
           {activeScreen ? (
-            activeScreenContent()
+            <div className="relative">
+              <Button 
+                variant="ghost"
+                size="sm"
+                className="absolute left-0 top-0 text-[#33FF00]/70 hover:text-[#33FF00] hover:bg-transparent p-0"
+                onClick={() => setActiveScreen(null)}
+              >
+                <ChevronLeft className="h-4 w-4 mr-1" />
+                <span className="font-micro uppercase text-xs">Back</span>
+              </Button>
+              {activeScreenContent()}
+            </div>
           ) : (
             <div className="p-4">
               <h2 className="text-[#33FF00] font-micro mb-4 uppercase tracking-widest text-center">SYSTEM MENU</h2>
