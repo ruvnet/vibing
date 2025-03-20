@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ScrollArea } from './ui/scroll-area';
-import { X } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 
 interface RuvServiceDetailProps {
   onClose: () => void;
@@ -31,14 +31,44 @@ const RuvServiceDetail: React.FC<RuvServiceDetailProps> = ({ onClose }) => {
           <div className="p-2 border border-[#33FF00]/30 bg-[#111]/50">
             <h3 className="text-[#FF33CC] uppercase tracking-wide mb-1">:: VIBE CODING ::</h3>
             <p className="whitespace-pre-line">
-              $99 FOR 15 MINUTE SESSIONS
-
               REVOLUTIONARY APPROACH THAT COMBINES TECHNICAL EXPERTISE WITH 
               INTUITIVE DESIGN PRINCIPLES. rUv ANALYZES YOUR CODE THROUGH 
               THE LENS OF AESTHETICS, EFFICIENCY, AND AGENT ALIGNMENT.
 
               "NOT JUST FUNCTIONAL CODE, BUT CODE THAT RESONATES."
             </p>
+            
+            <div className="mt-4 space-y-2">
+              <a 
+                href="https://calendly.com/ruv/ruv-15-min-paid" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2 border border-[#FF33CC]/50 hover:border-[#FF33CC] hover:bg-[#FF33CC]/10 transition-colors cursor-pointer"
+              >
+                <span>15 MINUTE SESSION • $99</span>
+                <ExternalLink size={14} className="text-[#FF33CC]" />
+              </a>
+              
+              <a 
+                href="https://calendly.com/ruv/30-minutes-with-ruv" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2 border border-[#FF33CC]/50 hover:border-[#FF33CC] hover:bg-[#FF33CC]/10 transition-colors cursor-pointer"
+              >
+                <span>30 MINUTE SESSION • $199</span>
+                <ExternalLink size={14} className="text-[#FF33CC]" />
+              </a>
+              
+              <a 
+                href="https://calendly.com/ruv/60-minutes-with-ruv-clone" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2 border border-[#FF33CC]/50 hover:border-[#FF33CC] hover:bg-[#FF33CC]/10 transition-colors cursor-pointer"
+              >
+                <span>60 MINUTE SESSION • $399</span>
+                <ExternalLink size={14} className="text-[#FF33CC]" />
+              </a>
+            </div>
           </div>
           
           <div className="p-2 border border-[#33FF00]/30 bg-[#111]/50">
@@ -89,9 +119,14 @@ const RuvServiceDetail: React.FC<RuvServiceDetailProps> = ({ onClose }) => {
           
           <div className="p-2 border border-[#33FF00]/30 bg-[#111]/50 flex flex-col items-center">
             <h3 className="text-[#FF33CC] uppercase tracking-wide mb-1">:: BOOK NOW ::</h3>
-            <div className="inline-block border border-[#FF33CC] p-3 text-[#FF33CC] text-center mb-2 animate-pulse-slow cursor-pointer">
+            <a 
+              href="https://calendly.com/ruv/ruv-15-min-paid" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block border border-[#FF33CC] p-3 text-[#FF33CC] text-center mb-2 animate-pulse-slow cursor-pointer hover:bg-[#FF33CC]/10 transition-colors"
+            >
               INITIATE SESSION REQUEST
-            </div>
+            </a>
             <p className="text-center">
               LIMITED AVAILABILITY • WAITLIST MAY APPLY
               <br/>
@@ -101,6 +136,26 @@ const RuvServiceDetail: React.FC<RuvServiceDetailProps> = ({ onClose }) => {
 
           <div className="mt-6 text-center text-[#33FF00]/50 text-xs">
             © 1986 COHEN CYBERNETICS CORP. ALL RIGHTS RESERVED.
+            <br/>
+            <a 
+              href="https://www.youtube.com/@ruvCohen" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-[#33FF00]/70 hover:text-[#33FF00] mt-2 transition-colors"
+            >
+              <span>YOUTUBE</span>
+              <ExternalLink size={10} className="ml-1" />
+            </a>
+            <span className="mx-2">•</span>
+            <a 
+              href="https://twitter.com/ruvnet" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-[#33FF00]/70 hover:text-[#33FF00] transition-colors"
+            >
+              <span>TWITTER</span>
+              <ExternalLink size={10} className="ml-1" />
+            </a>
           </div>
         </div>
       </ScrollArea>
