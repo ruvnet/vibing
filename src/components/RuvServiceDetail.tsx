@@ -130,7 +130,7 @@ const RuvServiceDetail: React.FC<RuvServiceDetailProps> = ({ onClose }) => {
             <p className="text-center">
               LIMITED AVAILABILITY • WAITLIST MAY APPLY
               <br/>
-              CONTACT: rUv@agentic.engineer
+              CONTACT: ruv@ruv.net
             </p>
           </div>
 

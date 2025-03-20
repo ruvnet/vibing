@@ -58,7 +58,9 @@ const NotificationPanel: React.FC = () => {
         return "No additional information available for this calendar event.";
       
       case 'system':
-        if (title.includes('UPDATE FIRMWARE')) {
+        if (title.includes('GITHUB INSTALLATION GUIDE')) {
+          return "VIBING TERMINAL INTERFACE - INSTALLATION PROTOCOL\n\n:: SYSTEM REQUIREMENTS ::\n* NODE.JS 18+ ENVIRONMENT\n* NPM OR BUN PACKAGE MANAGER\n* 64K MEMORY ALLOCATION\n\n:: INSTALLATION SEQUENCE ::\n\n1. CLONE REPOSITORY\n   git clone https://github.com/ruvnet/vibing.git\n\n2. NAVIGATE TO DIRECTORY\n   cd vibing\n\n3. INSTALL DEPENDENCIES\n   npm i\n\n4. INITIATE DEVELOPMENT SERVER\n   npm run dev\n\n:: DEPLOYMENT OPTIONS ::\n\n* FLY.IO DEPLOYMENT:\n  curl -L https://fly.io/install.sh | sh\n  fly auth login\n  fly deploy\n\n* VERCEL COMPATIBLE\n* NETLIFY COMPATIBLE\n\n:: ACCESS PROTOCOLS ::\n\nAfter initialization, system will be available at:\nhttp://localhost:5173\n\nDeployed URL: https://vibing.fly.dev/\nRepository: https://github.com/ruvnet/vibing\n\n:: END OF TRANSMISSION ::";
+        } else if (title.includes('UPDATE FIRMWARE')) {
           return "Critical update available. This update includes important security patches and performance improvements. Estimated installation time: 5 minutes. System will need to restart.";
         } else if (title.includes('MEMORY USAGE')) {
           return "Memory usage exceeding optimal levels. Recommended actions: \n- Close unused applications \n- Clear temporary cache \n- Run diagnostic scan";
@@ -70,7 +72,7 @@ const NotificationPanel: React.FC = () => {
         return "No additional information available for this system notification.";
       
       case 'ruvservices':
-        return "AGENTIC ENGINEER SERVICES OVERVIEW:\n\n* VIBE CODING SESSIONS - $99/15MIN\n* CONSULTING PACKAGES - CUSTOM RATES\n* AGENT ALIGNMENT - STARTING $499\n* SYSTEM ARCHITECTURE - STARTING $999\n\nContact: rUv@agentic.engineer";
+        return "AGENTIC ENGINEER SERVICES OVERVIEW:\n\n* VIBE CODING SESSIONS - $99/15MIN\n* CONSULTING PACKAGES - CUSTOM RATES\n* AGENT ALIGNMENT - STARTING $499\n* SYSTEM ARCHITECTURE - STARTING $999\n\nContact: ruv@ruv.net";
       
       default:
         return "No additional information available.";
@@ -160,7 +162,7 @@ const NotificationPanel: React.FC = () => {
               onClick={() => handleCardClick("VIBE CODING SESSION WITH rUv", "calendar")}
             />
             
-            <NotificationCard 
+            <NotificationCard
               type="email"
               title="AGENTICS FOUNDATION LAUNCH"
               subtitle="COMMUNITY ANNOUNCEMENT"
@@ -168,7 +170,15 @@ const NotificationPanel: React.FC = () => {
               onClick={() => handleCardClick("AGENTICS FOUNDATION LAUNCH", "email")}
             />
             
-            <NotificationCard 
+            <NotificationCard
+              type="system"
+              title="GITHUB INSTALLATION GUIDE"
+              subtitle="VIBING TERMINAL INTERFACE"
+              className="fade-in-delay-1 border-l-[#FF33CC] animate-pulse-slow"
+              onClick={() => handleCardClick("GITHUB INSTALLATION GUIDE", "system")}
+            />
+            
+            <NotificationCard
               type="ruvservices"
               title="rUv CODING SERVICES NOW AVAILABLE"
               subtitle="STARTING AT $99 FOR 15 MIN"

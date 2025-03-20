@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node -e \"const http=require('http');const fs=require('fs');const path=require('path');const server=http.createServer((req,res)=>{const filePath=path.join(__dirname,'dist',req.url==='/'?'index.html':req.url);fs.stat(filePath,(err,stats)=>{if(err||!stats.isFile()){if(req.url.includes('.')){res.statusCode=404;res.end('Not found');}else{fs.readFile(path.join(__dirname,'dist','index.html'),(err,data)=>{if(err){res.statusCode=500;res.end('Server Error');}else{res.setHeader('Content-Type','text/html');res.end(data);}})}}else{const ext=path.extname(filePath);const contentType={'':{'Content-Type':'text/html'},'.html':{'Content-Type':'text/html'},'.js':{'Content-Type':'text/javascript'},'.css':{'Content-Type':'text/css'},'.json':{'Content-Type':'application/json'},'.png':{'Content-Type':'image/png'},'.jpg':{'Content-Type':'image/jpeg'},'.svg':{'Content-Type':'image/svg+xml'}}[ext]||{'Content-Type':'application/octet-stream'};fs.readFile(filePath,(err,data)=>{if(err){res.statusCode=500;res.end('Server Error');}else{Object.entries(contentType).forEach(([k,v])=>res.setHeader(k,v));res.end(data);}})}})});server.listen(8080,'0.0.0.0',()=>console.log('Server running at http://0.0.0.0:8080/'));\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

@@ -1,58 +1,33 @@
-# Welcome to your Lovable project
+# rUvix: AGENTIC ENGINEER TERMINAL
 
-## Project info
+![rUvix Terminal](public/og-image.png)
 
-**URL**: https://lovable.dev/projects/d38c0dd3-00a2-4f21-82b2-1a49151ec392
+## :: SYSTEM OVERVIEW ::
 
-## How can I edit this code?
+**rUvix** is a retro-futuristic terminal interface designed to showcase the services of Reuven "rUv" Cohen, an Agentic Engineer specializing in vibe coding, agent alignment, and system architecture. This interactive demo provides a glimpse into the aesthetic and functional principles that define rUv's approach to code.
 
-There are several ways of editing your application.
+## :: VIBE CODING SERVICES ::
 
-**Use Lovable**
+Experience revolutionary coding that combines technical expertise with intuitive design principles:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d38c0dd3-00a2-4f21-82b2-1a49151ec392) and start prompting.
+- **15 MINUTE SESSION • $99** - [BOOK NOW](https://calendly.com/ruv/ruv-15-min-paid)
+- **30 MINUTE SESSION • $199** - [BOOK NOW](https://calendly.com/ruv/30-minutes-with-ruv)
+- **60 MINUTE SESSION • $399** - [BOOK NOW](https://calendly.com/ruv/60-minutes-with-ruv-clone)
 
-Changes made via Lovable will be committed automatically to this repo.
+"NOT JUST FUNCTIONAL CODE, BUT CODE THAT RESONATES."
 
-**Use your preferred IDE**
+## :: AGENTIC CONSULTING ::
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Custom packages available for organizations developing agentic systems:
+- Architecture reviews
+- Alignment protocols
+- Autonomous system design
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Drawing from experience with Fortune 500 firms and cutting-edge startups in the emerging field of autonomous agents.
 
-Follow these steps:
+## :: TECHNOLOGY STACK ::
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+This terminal interface is built with:
 
 - Vite
 - TypeScript
@@ -60,10 +35,42 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## :: INSTALLATION PROTOCOLS ::
 
-Simply open [Lovable](https://lovable.dev/projects/d38c0dd3-00a2-4f21-82b2-1a49151ec392) and click on Share -> Publish.
+```sh
+# CLONE REPOSITORY
+# NAVIGATE TO DIRECTORY
+cd vibing
 
-## I want to use a custom domain - is that possible?
+# INSTALL DEPENDENCIES
+npm i
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+# INITIATE DEVELOPMENT SERVER
+npm run dev
+```
+
+## :: DEPLOYMENT INSTRUCTIONS ::
+
+Deploy using Fly.io:
+
+```sh
+# INSTALL FLY CLI IF NOT PRESENT
+curl -L https://fly.io/install.sh | sh
+
+# AUTHENTICATE
+fly auth login
+
+# DEPLOY
+fly deploy
+```
+
+## :: CONNECT WITH rUv ::
+
+- [X](https://twitter.com/ruv)
+
+
+## :: SYSTEM METADATA ::
+
+© 1986 COHEN CYBERNETICS CORP. ALL RIGHTS RESERVED.
+
+*"VIBRATIONAL ALIGNMENT • RECURSIVE SELF-IMPROVEMENT • ETHICAL GUARDRAILS • EMERGENT BEHAVIOR MONITORING"*
