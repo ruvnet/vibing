@@ -63,43 +63,34 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
     const addNextMessage = () => {
       if (currentMessageIndex < loadingMessages.length) {
         const currentMsg = loadingMessages[currentMessageIndex];
-        const messageText = currentMsg.message;
         
-        // Check if this message is already in the visible messages
-        // If not using exact text comparison, could use a unique identifier instead
-        if (!visibleMessages.includes(messageText)) {
-          setTimeout(() => {
-            setVisibleMessages(prev => [...prev, messageText]);
-            
-            // Update progress based on how many messages have been shown
-            const newProgress = Math.floor(((currentMessageIndex + 1) / loadingMessages.length) * 100);
-            setProgress(newProgress);
-            
-            currentMessageIndex++;
-            
-            // If we've shown the last message, mark as complete after a short delay
-            if (currentMessageIndex === loadingMessages.length) {
-              setTimeout(() => {
-                setLoadingComplete(true);
-                if (onComplete) {
-                  setTimeout(onComplete, 800);
-                }
-              }, 1000);
-            } else {
-              addNextMessage();
-            }
-          }, currentMsg.delay);
-        } else {
-          // Skip this message and move to the next one
+        setTimeout(() => {
+          setVisibleMessages(prev => [...prev, currentMsg.message]);
+          
+          // Update progress based on how many messages have been shown
+          const newProgress = Math.floor(((currentMessageIndex + 1) / loadingMessages.length) * 100);
+          setProgress(newProgress);
+          
           currentMessageIndex++;
-          addNextMessage();
-        }
+          
+          // If we've shown the last message, mark as complete after a short delay
+          if (currentMessageIndex === loadingMessages.length) {
+            setTimeout(() => {
+              setLoadingComplete(true);
+              if (onComplete) {
+                setTimeout(onComplete, 800);
+              }
+            }, 1000);
+          } else {
+            addNextMessage();
+          }
+        }, currentMsg.delay);
       }
     };
     
     // Start the sequence
     addNextMessage();
-  }, [open, onComplete, visibleMessages]);
+  }, [open, onComplete]);
 
   return (
     <Dialog open={open} modal>
