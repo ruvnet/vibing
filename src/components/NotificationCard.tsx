@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 interface NotificationCardProps {
   title: string;
   subtitle: string;
-  type: 'email' | 'calendar' | 'system';
+  type: 'email' | 'calendar' | 'system' | 'ruvservices';
   className?: string;
   onClick?: () => void;
 }
@@ -26,6 +26,8 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
         return '📅';
       case 'system':
         return '⚙️';
+      case 'ruvservices':
+        return '👾';
       default:
         return '';
     }
