@@ -31,15 +31,17 @@ const Index = () => {
               *** MAINFRAME COMMUNICATION SYSTEM ***
             </div>
             
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col overflow-hidden">
               <NotificationPanel />
             </div>
             
             <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
           </div>
           
-          {/* Control panel */}
-          <NavigationMenu />
+          {/* Control panel - made sticky at the bottom */}
+          <div className="sticky bottom-0 z-10">
+            <NavigationMenu />
+          </div>
         </div>
         
         {/* Terminal footer */}

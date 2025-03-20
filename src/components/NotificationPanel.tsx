@@ -55,7 +55,7 @@ const NotificationPanel: React.FC = () => {
       </div>
       
       {selectedNotification ? (
-        <div className="flex-1 mb-4 relative flex flex-col">
+        <div className="flex-1 mb-4 relative flex flex-col overflow-hidden">
           <button 
             className="absolute right-0 top-0 text-[#33FF00]/70 hover:text-[#33FF00] z-10"
             onClick={() => setSelectedNotification(null)}
@@ -72,14 +72,14 @@ const NotificationPanel: React.FC = () => {
             </div>
           </div>
           
-          <ScrollArea className="flex-1 pr-2 max-h-[250px] md:max-h-[350px] touch-auto overflow-y-auto">
+          <ScrollArea className="flex-1 pr-2 h-full min-h-0 touch-auto overflow-y-auto">
             <div className="font-micro text-[#33FF00]/90 text-xs md:text-sm whitespace-pre-line">
               {selectedNotification.content}
             </div>
           </ScrollArea>
         </div>
       ) : (
-        <ScrollArea className="pr-4 flex-1 max-h-[300px] md:max-h-[400px] touch-auto overflow-y-auto">
+        <ScrollArea className="pr-4 flex-1 h-full min-h-0 touch-auto overflow-y-auto">
           {/* Email Section */}
           <div className="mb-4 md:mb-6">
             <div className="flex items-center mb-2 md:mb-3">
