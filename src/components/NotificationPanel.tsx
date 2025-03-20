@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import NotificationCard from './NotificationCard';
 import { Mail, Calendar, Settings, User, X, Globe } from 'lucide-react';
@@ -143,6 +144,13 @@ const NotificationPanel: React.FC = () => {
               </h3>
             </div>
             <NotificationCard 
+              type="calendar"
+              title="VIBE CODING SESSION WITH rUv"
+              subtitle="TOMORROW • 14:30 HRS"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("VIBE CODING SESSION WITH rUv", "calendar")}
+            />
+            <NotificationCard 
               type="email"
               title="AGENTICS FOUNDATION LAUNCH"
               subtitle="COMMUNITY ANNOUNCEMENT"
@@ -155,13 +163,6 @@ const NotificationPanel: React.FC = () => {
               subtitle="STARTING AT $99 FOR 15 MIN"
               className="fade-in-delay-1 border-l-[#FF33CC]"
               onClick={() => handleCardClick("rUv CODING SERVICES NOW AVAILABLE", "ruvservices")}
-            />
-            <NotificationCard 
-              type="calendar"
-              title="VIBE CODING SESSION WITH rUv"
-              subtitle="TOMORROW • 14:30 HRS"
-              className="fade-in-delay-1 border-l-[#FF33CC]"
-              onClick={() => handleCardClick("VIBE CODING SESSION WITH rUv", "calendar")}
             />
           </div>
           
