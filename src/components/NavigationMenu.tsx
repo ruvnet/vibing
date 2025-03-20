@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Info, HelpCircle, Settings, Terminal, Power, Menu, X } from 'lucide-react';
 import NavButton from './NavButton';
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { cn } from '@/lib/utils';
 
 interface NavigationScreen {
@@ -11,9 +12,71 @@ interface NavigationScreen {
   content: React.ReactNode;
 }
 
+interface PowerAction {
+  id: string;
+  title: string;
+  description: string;
+  confirmText: string;
+  color: string;
+  hoverColor: string;
+  action: () => void;
+}
+
 const NavigationMenu: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [confirmPowerAction, setConfirmPowerAction] = useState<PowerAction | null>(null);
+  
+  // Define power actions
+  const powerActions: PowerAction[] = [
+    {
+      id: 'restart',
+      title: 'RESTART SYSTEM',
+      description: 'All system functions will be temporarily suspended during restart sequence. Proceed?',
+      confirmText: 'CONFIRM RESTART',
+      color: 'border-[#33FF00]/30 bg-[#111] text-[#33FF00]',
+      hoverColor: 'hover:bg-[#222]',
+      action: () => {
+        console.log('System restart initiated');
+        // Simulating a restart by reloading the page
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }
+    },
+    {
+      id: 'sleep',
+      title: 'SLEEP MODE',
+      description: 'System will enter low-power state. All open operations will be suspended. Proceed?',
+      confirmText: 'CONFIRM SLEEP',
+      color: 'border-[#33FF00]/30 bg-[#111] text-[#33FF00]',
+      hoverColor: 'hover:bg-[#222]',
+      action: () => {
+        console.log('Sleep mode activated');
+        // Simulate sleep mode (just a visual effect)
+        document.body.classList.add('sleep-mode');
+        setTimeout(() => {
+          document.body.classList.remove('sleep-mode');
+        }, 5000);
+      }
+    },
+    {
+      id: 'shutdown',
+      title: 'SHUT DOWN',
+      description: 'WARNING: All system functions will terminate. Unsaved data may be lost. Proceed?',
+      confirmText: 'CONFIRM SHUTDOWN',
+      color: 'border-red-500/30 bg-[#111] text-red-500',
+      hoverColor: 'hover:bg-[#220000]',
+      action: () => {
+        console.log('System shutdown initiated');
+        // Simulate shutdown (fade to black)
+        document.body.classList.add('shutdown');
+        setTimeout(() => {
+          document.body.classList.add('shutdown-complete');
+        }, 1500);
+      }
+    }
+  ];
   
   const screens: NavigationScreen[] = [
     {
@@ -108,15 +171,15 @@ const NavigationMenu: React.FC = () => {
         <div className="p-4">
           <h2 className="text-[#33FF00] font-micro mb-4 uppercase tracking-widest">System Power Options</h2>
           <div className="space-y-3">
-            <button className="w-full p-3 border border-[#33FF00]/30 bg-[#111] hover:bg-[#222] text-[#33FF00] font-micro uppercase text-sm transition-colors">
-              RESTART SYSTEM
-            </button>
-            <button className="w-full p-3 border border-[#33FF00]/30 bg-[#111] hover:bg-[#222] text-[#33FF00] font-micro uppercase text-sm transition-colors">
-              SLEEP MODE
-            </button>
-            <button className="w-full p-3 border border-red-500/30 bg-[#111] hover:bg-[#220000] text-red-500 font-micro uppercase text-sm transition-colors">
-              SHUT DOWN
-            </button>
+            {powerActions.map(action => (
+              <button 
+                key={action.id}
+                className={`w-full p-3 border ${action.color} ${action.hoverColor} font-micro uppercase text-sm transition-colors`}
+                onClick={() => setConfirmPowerAction(action)}
+              >
+                {action.title}
+              </button>
+            ))}
           </div>
         </div>
       )
@@ -259,6 +322,40 @@ const NavigationMenu: React.FC = () => {
           {activeScreenContent()}
         </div>
       )}
+
+      {/* Power action confirmation dialog */}
+      <AlertDialog open={confirmPowerAction !== null} onOpenChange={(open) => !open && setConfirmPowerAction(null)}>
+        <AlertDialogContent className="bg-black border-2 border-[#33FF00]/30 p-6 font-micro text-[#33FF00] dot-matrix-container max-w-sm animate-[scale-in_0.2s_ease-out,fade-in_0.3s_ease-out]">
+          <AlertDialogHeader>
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
+            <AlertDialogTitle className="text-center text-[#33FF00] uppercase tracking-widest text-lg mb-4 border-b border-[#33FF00]/30 pb-2">
+              {confirmPowerAction?.title || 'SYSTEM ACTION'}
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-[#33FF00]/80 mb-4 text-center">
+              {confirmPowerAction?.description || 'Confirm this action?'}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="flex flex-col space-y-3 mt-6 mb-2">
+            <AlertDialogFooter className="flex flex-col space-y-3">
+              <AlertDialogAction
+                className={`w-full p-3 border ${confirmPowerAction?.color || 'border-[#33FF00]/30 bg-[#111] text-[#33FF00]'} ${confirmPowerAction?.hoverColor || 'hover:bg-[#222]'} font-micro uppercase text-sm transition-colors animate-pulse`}
+                onClick={() => {
+                  if (confirmPowerAction) {
+                    confirmPowerAction.action();
+                    setConfirmPowerAction(null);
+                  }
+                }}
+              >
+                {confirmPowerAction?.confirmText || 'CONFIRM'}
+              </AlertDialogAction>
+              <AlertDialogCancel className="w-full p-3 border border-[#33FF00]/30 bg-[#111] hover:bg-[#222] text-[#33FF00] font-micro uppercase text-sm transition-colors">
+                CANCEL
+              </AlertDialogCancel>
+            </AlertDialogFooter>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#33FF00]/0 via-[#33FF00]/50 to-[#33FF00]/0"></div>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
