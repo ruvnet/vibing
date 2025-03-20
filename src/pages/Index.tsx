@@ -1,12 +1,21 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/NotificationPanel';
 import { Terminal } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationMenu from '@/components/NavigationMenu';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const Index = () => {
   const isMobile = useIsMobile();
+  const [showLoading, setShowLoading] = useState(true);
+  
+  // Auto-hide loading screen after it completes
+  const handleLoadingComplete = () => {
+    setTimeout(() => {
+      setShowLoading(false);
+    }, 500);
+  };
   
   return (
     <div className="min-h-[100dvh] bg-black flex flex-col items-center justify-between p-2 md:p-4 lg:p-8 overflow-hidden">
@@ -58,6 +67,9 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      {/* Loading Screen */}
+      <LoadingScreen open={showLoading} onComplete={handleLoadingComplete} />
     </div>
   );
 };
