@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -63,6 +65,42 @@
     @apply border border-cyber-dim/30 rounded-2xl;
   }
 
+  /* Dot Matrix Overlay */
+  .dot-matrix-container {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .dot-matrix-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dot-matrix-bg {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .dot-matrix-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .font-micro {
+    font-family: 'VT323', 'Press Start 2P', 'JetBrains Mono', monospace;
+    letter-spacing: 0px;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -91,5 +129,26 @@
   .fade-in-delay-3 {
     animation: fadeIn 0.5s ease-out 0.3s forwards;
     opacity: 0;
+  }
+
+  /* CRT scanline effect */
+  @keyframes scanline {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  .dot-matrix-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05) 50%, transparent);
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+    z-index: 2;
   }
 }

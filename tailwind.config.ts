@@ -128,10 +128,10 @@ export default {
 				'glow': 'glow 3s infinite ease-in-out'
 			},
 			fontFamily: {
-				'mono': ['JetBrains Mono', 'monospace']
+				'mono': ['JetBrains Mono', 'monospace'],
+				'micro': ['VT323', 'Press Start 2P', 'monospace']
 			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

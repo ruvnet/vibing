@@ -4,14 +4,14 @@ import NotificationCard from './NotificationCard';
 
 const NotificationPanel: React.FC = () => {
   return (
-    <div className="cyber-card p-8 w-full max-w-md mx-auto h-full flex flex-col fade-in-delay-1">
-      <h2 className="text-cyber-dim font-mono uppercase tracking-widest text-3xl mb-8">
+    <div className="cyber-card p-8 w-full max-w-md mx-auto h-full flex flex-col fade-in-delay-1 dot-matrix-container">
+      <h2 className="text-cyber-dim font-micro uppercase tracking-widest text-3xl mb-8">
         NOTIFICATIONS
       </h2>
       
       {/* Email Section */}
       <div className="mb-6">
-        <h3 className="text-cyber-dim font-mono uppercase tracking-wider mb-3">
+        <h3 className="text-cyber-dim font-micro uppercase tracking-wider mb-3">
           EMAIL
         </h3>
         <NotificationCard 
@@ -24,7 +24,7 @@ const NotificationPanel: React.FC = () => {
       
       {/* Calendar Section */}
       <div className="mb-6">
-        <h3 className="text-cyber-dim font-mono uppercase tracking-wider mb-3">
+        <h3 className="text-cyber-dim font-micro uppercase tracking-wider mb-3">
           CALENDAR
         </h3>
         <NotificationCard 
@@ -37,7 +37,7 @@ const NotificationPanel: React.FC = () => {
       
       {/* System Section */}
       <div className="mb-6">
-        <h3 className="text-cyber-dim font-mono uppercase tracking-wider mb-3">
+        <h3 className="text-cyber-dim font-micro uppercase tracking-wider mb-3">
           SYSTEM
         </h3>
         <NotificationCard 
