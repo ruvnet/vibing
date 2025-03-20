@@ -59,10 +59,10 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
       </div>
       
       <div className="ml-7">
-        <h3 className="text-[#33FF00] font-micro uppercase tracking-wide text-sm md:text-lg font-medium truncate">
+        <h3 className="text-[#33FF00] font-micro uppercase tracking-wide text-base md:text-xl font-medium truncate">
           {title}
         </h3>
-        <p className="text-[#33FF00]/70 font-micro uppercase tracking-wide mt-1 text-xs md:text-sm truncate">
+        <p className="text-[#33FF00]/70 font-micro uppercase tracking-wide mt-1 text-sm md:text-base truncate">
           {subtitle}
         </p>
       </div>
