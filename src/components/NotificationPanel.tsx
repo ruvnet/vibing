@@ -167,13 +167,6 @@ const NotificationPanel: React.FC = () => {
             </div>
             <NotificationCard 
               type="email"
-              title="EY.AI DEPLOYMENT SUCCESS"
-              subtitle="ENTERPRISE SYSTEMS"
-              className="fade-in-delay-1 border-l-[#FF33CC]"
-              onClick={() => handleCardClick("EY.AI DEPLOYMENT SUCCESS", "email")}
-            />
-            <NotificationCard 
-              type="email"
               title="CLOUD COMPUTING PIONEER RECOGNITION"
               subtitle="TECH HERITAGE FOUNDATION"
               className="fade-in-delay-1 border-l-[#FF33CC]"
@@ -199,6 +192,13 @@ const NotificationPanel: React.FC = () => {
               subtitle="CENTRAL AI"
               className="fade-in-delay-1"
               onClick={() => handleCardClick("SYSTEM DATA ANALYSIS COMPLETED", "email")}
+            />
+            <NotificationCard 
+              type="email"
+              title="EY.AI DEPLOYMENT SUCCESS"
+              subtitle="ENTERPRISE SYSTEMS"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("EY.AI DEPLOYMENT SUCCESS", "email")}
             />
           </div>
           
