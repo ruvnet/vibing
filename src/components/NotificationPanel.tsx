@@ -29,19 +29,48 @@ const NotificationPanel: React.FC = () => {
   const getContentForNotification = (title: string, type: string): string => {
     switch (type) {
       case 'email':
-        return title.includes('LOVE YOUR WORK') 
-          ? "Hello, I've been following your work and I'm impressed with your latest project. Would you be interested in collaborating on a new AI-driven interface? Let me know your thoughts. Best regards, Valerie"
-          : "System data analysis complete. No anomalies detected in main processor. Memory optimization recommended for sectors 4A through 7C. Backup completed successfully.";
+        if (title.includes('LOVE YOUR WORK')) {
+          return "Hello, I've been following your work and I'm impressed with your latest project. Would you be interested in collaborating on a new AI-driven interface? Let me know your thoughts. Best regards, Valerie";
+        } else if (title.includes('SYSTEM DATA ANALYSIS')) {
+          return "System data analysis complete. No anomalies detected in main processor. Memory optimization recommended for sectors 4A through 7C. Backup completed successfully.";
+        } else if (title.includes('EY.AI DEPLOYMENT')) {
+          return "Congratulations on the successful deployment of EY.ai! Your pivotal role in this enterprise AI stack implementation has been noted. The system is now serving 400,000+ employees and 1.5M end users with the allocated $1.4B budget performing as expected. Outstanding work, rUv.";
+        } else if (title.includes('CLOUD COMPUTING PIONEER')) {
+          return "Your recent talk on the evolution of cloud computing was enlightening. As the person who coined 'infrastructure as a service' in 2005 before AWS EC2 launched, your insights are invaluable. The Enomaly Inc. case study continues to inspire new cloud ventures.";
+        } else if (title.includes('INTERVIEW REQUEST')) {
+          return "I'm reaching out from Tech Visionaries Magazine. We're doing a feature on AI pioneers and would love to interview you about your three decades in the industry, from early internet days with Napster and AOL to your current work with enterprise AI systems. Your experience as an alpha/beta tester for OpenAI is particularly interesting to our readers.";
+        }
+        return "No additional information available for this email.";
+      
       case 'calendar':
-        return title.includes('TEAM WEEKLY') 
-          ? "Agenda: \n- Project status update \n- New feature discussion \n- Resource allocation \n- Q&A \n\nPlease prepare your weekly progress report."
-          : "Quarterly planning for upcoming system enhancements. All department heads must attend. Bring documentation on resource requirements for next fiscal period.";
+        if (title.includes('TEAM WEEKLY')) {
+          return "Agenda: \n- Project status update \n- New feature discussion \n- Resource allocation \n- Q&A \n\nPlease prepare your weekly progress report.";
+        } else if (title.includes('QUARTERLY PLANNING')) {
+          return "Quarterly planning for upcoming system enhancements. All department heads must attend. Bring documentation on resource requirements for next fiscal period.";
+        } else if (title.includes('VIBE CODING SESSION')) {
+          return "Upcoming vibe coding session with rUv scheduled. Duration: 30 minutes. Topics to cover: aesthetic code optimization, agent alignment protocols, and intuitive design principles for your current project.";
+        } else if (title.includes('FUNGIBILITY PODCAST')) {
+          return "Recording session for the Fungibility Podcast. Episode topic: 'The Evolution of AI Agents in Enterprise Settings.' Guest: Dr. Ada Chen from MIT Media Lab. Pre-recording briefing starts 15 minutes before the scheduled time.";
+        } else if (title.includes('US FEDERAL CIO COUNCIL')) {
+          return "Advisory meeting with the US Federal CIO Council on AI implementation strategies for government systems. Your presentation on secure agent deployment is scheduled for 25 minutes, followed by a 15-minute Q&A session.";
+        }
+        return "No additional information available for this calendar event.";
+      
       case 'system':
-        return title.includes('UPDATE FIRMWARE') 
-          ? "Critical update available. This update includes important security patches and performance improvements. Estimated installation time: 5 minutes. System will need to restart."
-          : "Memory usage exceeding optimal levels. Recommended actions: \n- Close unused applications \n- Clear temporary cache \n- Run diagnostic scan";
+        if (title.includes('UPDATE FIRMWARE')) {
+          return "Critical update available. This update includes important security patches and performance improvements. Estimated installation time: 5 minutes. System will need to restart.";
+        } else if (title.includes('MEMORY USAGE')) {
+          return "Memory usage exceeding optimal levels. Recommended actions: \n- Close unused applications \n- Clear temporary cache \n- Run diagnostic scan";
+        } else if (title.includes('NIST CLOUD DEFINITION')) {
+          return "Historical document retrieved: Co-authored US Cloud Definition with the National Institute of Standards and Technology (009). This document provided the foundation for cloud policy and implementation across federal agencies. Reference ID: NIST-SP-800-145.";
+        } else if (title.includes('CLOUDCAMP ANALYTICS')) {
+          return "CloudCamp initiative statistics update: Now active in 278 cities globally. Total participants to date: 103,450. Impact assessment shows 72% of participants implemented cloud technologies within 6 months of attendance. Co-founding this grassroots movement in 2008 continues to yield exponential returns.";
+        }
+        return "No additional information available for this system notification.";
+      
       case 'ruvservices':
         return "AGENTIC ENGINEER SERVICES OVERVIEW:\n\n* VIBE CODING SESSIONS - $99/15MIN\n* CONSULTING PACKAGES - CUSTOM RATES\n* AGENT ALIGNMENT - STARTING $499\n* SYSTEM ARCHITECTURE - STARTING $999\n\nContact: rUv@agentic.engineer";
+      
       default:
         return "No additional information available.";
     }
@@ -130,6 +159,27 @@ const NotificationPanel: React.FC = () => {
             </div>
             <NotificationCard 
               type="email"
+              title="EY.AI DEPLOYMENT SUCCESS"
+              subtitle="ENTERPRISE SYSTEMS"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("EY.AI DEPLOYMENT SUCCESS", "email")}
+            />
+            <NotificationCard 
+              type="email"
+              title="CLOUD COMPUTING PIONEER RECOGNITION"
+              subtitle="TECH HERITAGE FOUNDATION"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("CLOUD COMPUTING PIONEER RECOGNITION", "email")}
+            />
+            <NotificationCard 
+              type="email"
+              title="INTERVIEW REQUEST: TECH VISIONARIES"
+              subtitle="MEDIA INQUIRY"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("INTERVIEW REQUEST: TECH VISIONARIES", "email")}
+            />
+            <NotificationCard 
+              type="email"
               title="LOVE YOUR WORK + NEW PROJECT REQUEST"
               subtitle="VALERIE TETU"
               className="fade-in-delay-1"
@@ -154,6 +204,20 @@ const NotificationPanel: React.FC = () => {
             </div>
             <NotificationCard 
               type="calendar"
+              title="FUNGIBILITY PODCAST RECORDING"
+              subtitle="STUDIO B • 15:00 HRS"
+              className="fade-in-delay-2 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("FUNGIBILITY PODCAST RECORDING", "calendar")}
+            />
+            <NotificationCard 
+              type="calendar"
+              title="US FEDERAL CIO COUNCIL ADVISORY"
+              subtitle="VIRTUAL • 09:00 HRS"
+              className="fade-in-delay-2 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("US FEDERAL CIO COUNCIL ADVISORY", "calendar")}
+            />
+            <NotificationCard 
+              type="calendar"
               title="TEAM WEEKLY SYNC"
               subtitle="ZOOM • 10:05 AM"
               className="fade-in-delay-2"
@@ -176,6 +240,20 @@ const NotificationPanel: React.FC = () => {
                 SYSTEM
               </h3>
             </div>
+            <NotificationCard 
+              type="system"
+              title="NIST CLOUD DEFINITION ARCHIVE"
+              subtitle="HISTORICAL DOCUMENT"
+              className="fade-in-delay-3 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("NIST CLOUD DEFINITION ARCHIVE", "system")}
+            />
+            <NotificationCard 
+              type="system"
+              title="CLOUDCAMP ANALYTICS UPDATE"
+              subtitle="GLOBAL INITIATIVE STATS"
+              className="fade-in-delay-3 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("CLOUDCAMP ANALYTICS UPDATE", "system")}
+            />
             <NotificationCard 
               type="system"
               title="UPDATE FIRMWARE V 1.0.3"
