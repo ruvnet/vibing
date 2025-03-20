@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import NotificationCard from './NotificationCard';
-import { Mail, Calendar, Settings, User, X } from 'lucide-react';
+import { Mail, Calendar, Settings, User, X, Globe } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 import { cn } from '@/lib/utils';
 import RuvServiceDetail from './RuvServiceDetail';
@@ -39,6 +38,8 @@ const NotificationPanel: React.FC = () => {
           return "Your recent talk on the evolution of cloud computing was enlightening. As the person who coined 'infrastructure as a service' in 2005 before AWS EC2 launched, your insights are invaluable. The Enomaly Inc. case study continues to inspire new cloud ventures.";
         } else if (title.includes('INTERVIEW REQUEST')) {
           return "I'm reaching out from Tech Visionaries Magazine. We're doing a feature on AI pioneers and would love to interview you about your three decades in the industry, from early internet days with Napster and AOL to your current work with enterprise AI systems. Your experience as an alpha/beta tester for OpenAI is particularly interesting to our readers.";
+        } else if (title.includes('AGENTICS FOUNDATION')) {
+          return "⭐ Introducing the Agentics Foundation, a vibrant community and the literal foundation for innovation and collaboration in the field of agent-based AI systems.\n\nBy bringing together forward-thinking individuals and organizations, we empower members to design, deploy, and manage autonomous agents that enhance human potential through intuitive, accessible interfaces.\n\nQuick Links:\n- 🚀 Agentics Foundation: https://agentics.org\n- 👩‍🏫 Membership: https://lnkd.in/gTk3QEGH\n- 🦄 Dashboard: https://lnkd.in/ggc7-bJk\n- 🐙 Github: https://lnkd.in/gk8y2ZdZ\n\nOur Vision:\nAt Agentics, we envision a future where artificial intelligence seamlessly integrates into daily life as a natural extension of human capability. We strive to create flexible technologies that adapt effortlessly to human needs, enabling individuals and communities to achieve greater outcomes without compromising their natural workflows.\n\nJoin the movement and help shape the future of AI!";
         }
         return "No additional information available for this email.";
       
@@ -141,6 +142,13 @@ const NotificationPanel: React.FC = () => {
                 AGENTIC ENGINEER
               </h3>
             </div>
+            <NotificationCard 
+              type="email"
+              title="AGENTICS FOUNDATION LAUNCH"
+              subtitle="COMMUNITY ANNOUNCEMENT"
+              className="fade-in-delay-1 border-l-[#FF33CC] animate-pulse-slow"
+              onClick={() => handleCardClick("AGENTICS FOUNDATION LAUNCH", "email")}
+            />
             <NotificationCard 
               type="ruvservices"
               title="rUv CODING SERVICES NOW AVAILABLE"

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Globe } from 'lucide-react';
 
 interface NotificationCardProps {
   title: string;
@@ -21,6 +21,10 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
   const getIcon = () => {
     switch (type) {
       case 'email':
+        // Special icon for Agentics Foundation message
+        if (title.includes('AGENTICS FOUNDATION')) {
+          return <Globe className="h-4 w-4 text-[#33FF00]" />;
+        }
         return '📨';
       case 'calendar':
         return '📅';
@@ -37,6 +41,8 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
     <div 
       className={cn(
         "cyber-card p-3 md:p-4 mb-3 transition-all duration-300 hover:bg-[#222]/80 cursor-pointer dot-matrix-bg border-l-4 border-[#33FF00] border-t border-r border-b border-[#33FF00]/30 relative group",
+        // Special styling for Agentics Foundation card
+        title.includes('AGENTICS FOUNDATION') ? "bg-[#112211]/80" : "",
         className
       )}
       onClick={onClick}
