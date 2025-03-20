@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Progress } from '@/components/ui/progress';
 
 interface LoadingMessage {
@@ -58,14 +58,21 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
     setLoadingComplete(false);
     
     let currentMessageIndex = 0;
+    let timeoutIds: NodeJS.Timeout[] = [];
     
     // Function to add messages one by one
     const addNextMessage = () => {
       if (currentMessageIndex < loadingMessages.length) {
         const currentMsg = loadingMessages[currentMessageIndex];
         
-        setTimeout(() => {
-          setVisibleMessages(prev => [...prev, currentMsg.message]);
+        const timeoutId = setTimeout(() => {
+          // Only add the message if it's not already in the list
+          setVisibleMessages(prev => {
+            if (prev.includes(currentMsg.message)) {
+              return prev;
+            }
+            return [...prev, currentMsg.message];
+          });
           
           // Update progress based on how many messages have been shown
           const newProgress = Math.floor(((currentMessageIndex + 1) / loadingMessages.length) * 100);
@@ -75,27 +82,37 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
           
           // If we've shown the last message, mark as complete after a short delay
           if (currentMessageIndex === loadingMessages.length) {
-            setTimeout(() => {
+            const completionTimeoutId = setTimeout(() => {
               setLoadingComplete(true);
               if (onComplete) {
-                setTimeout(onComplete, 800);
+                const finalTimeoutId = setTimeout(onComplete, 800);
+                timeoutIds.push(finalTimeoutId);
               }
             }, 1000);
+            timeoutIds.push(completionTimeoutId);
           } else {
             addNextMessage();
           }
         }, currentMsg.delay);
+        
+        timeoutIds.push(timeoutId);
       }
     };
     
     // Start the sequence
     addNextMessage();
+    
+    // Cleanup function to clear all timeouts on unmount or when dialog closes
+    return () => {
+      timeoutIds.forEach(id => clearTimeout(id));
+    };
   }, [open, onComplete]);
 
   return (
     <Dialog open={open} modal>
-      <DialogContent className="bg-cyber-black border-[#33FF00]/30 p-6 max-w-sm mx-auto font-micro text-[#33FF00] dot-matrix-container">
-        <div className="flex flex-col space-y-4">
+      <DialogContent className="bg-cyber-black border-[#33FF00]/30 p-6 max-w-sm mx-auto font-micro text-[#33FF00] dot-matrix-container" aria-describedby="loading-description">
+        <DialogTitle className="sr-only">RUVIX OS1.9z Loading Screen</DialogTitle>
+        <div id="loading-description" className="flex flex-col space-y-4">
           <div className="text-center text-lg tracking-widest border-b border-[#33FF00]/30 pb-2 mb-2">
             RUVIX OS1.9z
           </div>
