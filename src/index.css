@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -46,6 +45,11 @@
 
   html, body {
     @apply bg-cyber-black text-foreground h-full overflow-hidden antialiased;
+    background-image: 
+      radial-gradient(rgba(210, 255, 58, 0.03) 1px, transparent 1px),
+      radial-gradient(rgba(210, 255, 58, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
   }
 
   #root {
@@ -53,7 +57,7 @@
   }
 
   .cyber-card {
-    @apply bg-cyber-darkgray rounded-2xl border border-cyber-dim/20 shadow-md overflow-hidden backdrop-blur-sm;
+    @apply bg-cyber-darkgray rounded-md border border-cyber-dim/20 shadow-md overflow-hidden backdrop-blur-sm;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(210, 255, 58, 0.05);
   }
   
@@ -62,7 +66,7 @@
   }
 
   .cyber-border {
-    @apply border border-cyber-dim/30 rounded-2xl;
+    @apply border border-cyber-dim/30 rounded-md;
   }
 
   /* Dot Matrix Overlay */
@@ -76,7 +80,7 @@
     position: absolute;
     inset: 0;
     background-image: radial-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px);
-    background-size: 4px 4px;
+    background-size: 3px 3px;
     pointer-events: none;
     z-index: 1;
   }
@@ -91,7 +95,7 @@
     position: absolute;
     inset: 0;
     background-image: radial-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px);
-    background-size: 3px 3px;
+    background-size: 2px 2px;
     pointer-events: none;
     z-index: 1;
   }
@@ -99,6 +103,108 @@
   .font-micro {
     font-family: 'VT323', 'Press Start 2P', 'JetBrains Mono', monospace;
     letter-spacing: 0px;
+  }
+
+  /* New 8-bit console screen effects */
+  .screen-vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .screen-glitch {
+    background: linear-gradient(
+      transparent 0%, 
+      rgba(32, 128, 32, 0.02) 2%, 
+      rgba(32, 128, 32, 0.02) 3%, 
+      transparent 3%
+    );
+    background-size: 100% 8px;
+    z-index: 4;
+  }
+
+  .blink-text {
+    animation: blink 1.5s infinite step-end;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .screen-flicker {
+    animation: flicker 6s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.3; }
+    94% { opacity: 1; }
+    95% { opacity: 0.3; }
+    96% { opacity: 1; }
+    97% { opacity: 0.5; }
+    98% { opacity: 1; }
+  }
+
+  .animate-ping-slow {
+    animation: ping 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* CRT scanline effect */
+  @keyframes scanline {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  .dot-matrix-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(32, 128, 32, 0.05) 50%, transparent);
+    background-size: 100% 4px;
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Old monitor interlaced lines effect */
+  .dot-matrix-container::before {
+    background-image: 
+      repeating-linear-gradient(
+        transparent 0px,
+        transparent 1px,
+        rgba(0, 0, 0, 0.25) 1px,
+        rgba(0, 0, 0, 0.25) 2px
+      );
+    background-size: 100% 2px;
   }
 
   @keyframes fadeIn {
@@ -129,26 +235,5 @@
   .fade-in-delay-3 {
     animation: fadeIn 0.5s ease-out 0.3s forwards;
     opacity: 0;
-  }
-
-  /* CRT scanline effect */
-  @keyframes scanline {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
-
-  .dot-matrix-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05) 50%, transparent);
-    background-size: 100% 4px;
-    animation: scanline 10s linear infinite;
-    pointer-events: none;
-    z-index: 2;
   }
 }
