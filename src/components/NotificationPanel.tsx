@@ -93,7 +93,7 @@ const NotificationPanel: React.FC = () => {
       {/* Console Footer */}
       <div className="mt-4 border-t border-[#33FF00]/30 pt-2 text-[10px] font-micro text-[#33FF00]/70 flex justify-between">
         <span>READY</span>
-        <span className="blink-text">></span>
+        <span className="blink-text">{">"}</span>
         <span>v1.0.3</span>
       </div>
       
