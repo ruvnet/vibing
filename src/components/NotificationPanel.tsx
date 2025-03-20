@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import NotificationCard from './NotificationCard';
 import { Mail, Calendar, Settings, User, X, Globe } from 'lucide-react';
@@ -135,7 +134,7 @@ const NotificationPanel: React.FC = () => {
         </div>
       ) : (
         <ScrollArea className="pr-4 flex-1 min-h-0 touch-auto overflow-y-auto">
-          {/* rUv Section */}
+          {/* rUv Section - Moved to top and added new message */}
           <div className="mb-4 md:mb-6">
             <div className="flex items-center mb-2 md:mb-3">
               <User className="h-3 w-3 text-[#33FF00]/70 mr-2" />
@@ -143,6 +142,16 @@ const NotificationPanel: React.FC = () => {
                 AGENTIC ENGINEER
               </h3>
             </div>
+            
+            {/* New message - VIBE CODING SESSIONS with RUV NOW AVAILABLE */}
+            <NotificationCard 
+              type="ruvservices"
+              title="VIBE CODING SESSIONS with RUV NOW AVAILABLE"
+              subtitle="STARTING AT $99 FOR 15 MIN"
+              className="fade-in-delay-1 border-l-[#FF33CC] animate-pulse-slow"
+              onClick={() => handleCardClick("VIBE CODING SESSIONS with RUV NOW AVAILABLE", "ruvservices")}
+            />
+            
             <NotificationCard 
               type="calendar"
               title="VIBE CODING SESSION WITH rUv"
@@ -150,13 +159,15 @@ const NotificationPanel: React.FC = () => {
               className="fade-in-delay-1 border-l-[#FF33CC]"
               onClick={() => handleCardClick("VIBE CODING SESSION WITH rUv", "calendar")}
             />
+            
             <NotificationCard 
               type="email"
               title="AGENTICS FOUNDATION LAUNCH"
               subtitle="COMMUNITY ANNOUNCEMENT"
-              className="fade-in-delay-1 border-l-[#FF33CC] animate-pulse-slow"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
               onClick={() => handleCardClick("AGENTICS FOUNDATION LAUNCH", "email")}
             />
+            
             <NotificationCard 
               type="ruvservices"
               title="rUv CODING SERVICES NOW AVAILABLE"
