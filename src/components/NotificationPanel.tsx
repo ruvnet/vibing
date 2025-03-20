@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
 import NotificationCard from './NotificationCard';
-import { Mail, Calendar, Settings, X } from 'lucide-react';
+import { Mail, Calendar, Settings, User, X } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 import { cn } from '@/lib/utils';
+import RuvServiceDetail from './RuvServiceDetail';
 
 const NotificationPanel: React.FC = () => {
   const [selectedNotification, setSelectedNotification] = useState<{
@@ -11,8 +12,15 @@ const NotificationPanel: React.FC = () => {
     content: string;
     type: string;
   } | null>(null);
+  
+  const [showRuvServices, setShowRuvServices] = useState(false);
 
   const handleCardClick = (title: string, type: string) => {
+    if (type === 'ruvservices') {
+      setShowRuvServices(true);
+      return;
+    }
+    
     // Generate content based on the notification type and title
     const content = getContentForNotification(title, type);
     setSelectedNotification({ title, content, type });
@@ -32,9 +40,15 @@ const NotificationPanel: React.FC = () => {
         return title.includes('UPDATE FIRMWARE') 
           ? "Critical update available. This update includes important security patches and performance improvements. Estimated installation time: 5 minutes. System will need to restart."
           : "Memory usage exceeding optimal levels. Recommended actions: \n- Close unused applications \n- Clear temporary cache \n- Run diagnostic scan";
+      case 'ruvservices':
+        return "AGENTIC ENGINEER SERVICES OVERVIEW:\n\n* VIBE CODING SESSIONS - $99/15MIN\n* CONSULTING PACKAGES - CUSTOM RATES\n* AGENT ALIGNMENT - STARTING $499\n* SYSTEM ARCHITECTURE - STARTING $999\n\nContact: rUv@agentic.engineer";
       default:
         return "No additional information available.";
     }
+  };
+
+  const handleCloseRuvServices = () => {
+    setShowRuvServices(false);
   };
 
   return (
@@ -54,7 +68,9 @@ const NotificationPanel: React.FC = () => {
         </div>
       </div>
       
-      {selectedNotification ? (
+      {showRuvServices ? (
+        <RuvServiceDetail onClose={handleCloseRuvServices} />
+      ) : selectedNotification ? (
         <div className="flex-1 mb-4 relative flex flex-col min-h-0">
           <button 
             className="absolute right-0 top-0 text-[#33FF00]/70 hover:text-[#33FF00] z-10"
@@ -80,6 +96,30 @@ const NotificationPanel: React.FC = () => {
         </div>
       ) : (
         <ScrollArea className="pr-4 flex-1 min-h-0 touch-auto overflow-y-auto">
+          {/* rUv Section */}
+          <div className="mb-4 md:mb-6">
+            <div className="flex items-center mb-2 md:mb-3">
+              <User className="h-3 w-3 text-[#33FF00]/70 mr-2" />
+              <h3 className="text-[#33FF00]/70 font-micro uppercase tracking-wider text-xs md:text-sm">
+                AGENTIC ENGINEER
+              </h3>
+            </div>
+            <NotificationCard 
+              type="ruvservices"
+              title="rUv CODING SERVICES NOW AVAILABLE"
+              subtitle="STARTING AT $99 FOR 15 MIN"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("rUv CODING SERVICES NOW AVAILABLE", "ruvservices")}
+            />
+            <NotificationCard 
+              type="calendar"
+              title="VIBE CODING SESSION WITH rUv"
+              subtitle="TOMORROW • 14:30 HRS"
+              className="fade-in-delay-1 border-l-[#FF33CC]"
+              onClick={() => handleCardClick("VIBE CODING SESSION WITH rUv", "calendar")}
+            />
+          </div>
+          
           {/* Email Section */}
           <div className="mb-4 md:mb-6">
             <div className="flex items-center mb-2 md:mb-3">
@@ -156,7 +196,7 @@ const NotificationPanel: React.FC = () => {
       
       {/* Console Footer */}
       <div className="mt-4 border-t border-[#33FF00]/30 pt-2 text-[10px] font-micro text-[#33FF00]/70 flex justify-between">
-        <span>{selectedNotification ? "VIEWING" : "READY"}</span>
+        <span>{showRuvServices ? "rUv SERVICES" : selectedNotification ? "VIEWING" : "READY"}</span>
         <span className="blink-text">{">"}</span>
         <span>v1.0.3</span>
       </div>
