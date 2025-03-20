@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/NotificationPanel';
 import { Terminal } from 'lucide-react';
@@ -10,11 +9,11 @@ const Index = () => {
   const isMobile = useIsMobile();
   const [showLoading, setShowLoading] = useState(true);
   
-  // Auto-hide loading screen after it completes
+  // Auto-hide loading screen after it completes with a reduced delay
   const handleLoadingComplete = () => {
     setTimeout(() => {
       setShowLoading(false);
-    }, 500);
+    }, 200); // Reduced from 500ms to 200ms
   };
   
   return (

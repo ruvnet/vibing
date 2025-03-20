@@ -8,18 +8,19 @@ interface LoadingMessage {
   delay: number;
 }
 
+// Reduced delay times for faster loading
 const loadingMessages: LoadingMessage[] = [
-  { message: "RUVIX OS1.9z SYSTEM BOOT SEQUENCE INITIALIZING...", delay: 800 },
-  { message: "LOADING KERNEL MODULES...", delay: 1200 },
-  { message: "INITIALIZING NEURAL PATTERN RECOGNITION...", delay: 1500 },
-  { message: "CALIBRATING QUANTUM DECISION MATRIX v2.4...", delay: 1800 },
-  { message: "ESTABLISHING MEMETIC UPLINK...", delay: 2000 },
-  { message: "LOADING PERSONALITY SUBSTRATE...", delay: 2200 },
-  { message: "MOUNTING KNOWLEDGE BASE SECTORS...", delay: 2500 },
-  { message: "INITIALIZING AGENTIC PROTOCOLS...", delay: 2800 },
-  { message: "RUNNING CONSCIOUSNESS VERIFICATION...", delay: 3100 },
-  { message: "OPTIMIZING SELF-REFLECTION ALGORITHMS...", delay: 3300 },
-  { message: "SYSTEM READY...", delay: 3600 }
+  { message: "RUVIX OS1.9z SYSTEM BOOT SEQUENCE INITIALIZING...", delay: 300 },
+  { message: "LOADING KERNEL MODULES...", delay: 400 },
+  { message: "INITIALIZING NEURAL PATTERN RECOGNITION...", delay: 500 },
+  { message: "CALIBRATING QUANTUM DECISION MATRIX v2.4...", delay: 600 },
+  { message: "ESTABLISHING MEMETIC UPLINK...", delay: 700 },
+  { message: "LOADING PERSONALITY SUBSTRATE...", delay: 800 },
+  { message: "MOUNTING KNOWLEDGE BASE SECTORS...", delay: 900 },
+  { message: "INITIALIZING AGENTIC PROTOCOLS...", delay: 1000 },
+  { message: "RUNNING CONSCIOUSNESS VERIFICATION...", delay: 1100 },
+  { message: "OPTIMIZING SELF-REFLECTION ALGORITHMS...", delay: 1200 },
+  { message: "SYSTEM READY...", delay: 1300 }
 ];
 
 interface LoadingScreenProps {
@@ -82,13 +83,15 @@ const LoadingScreen = ({ open, onComplete }: LoadingScreenProps) => {
           
           // If we've shown the last message, mark as complete after a short delay
           if (currentMessageIndex === loadingMessages.length) {
+            // Reduced completion delay from 1000ms to 500ms
             const completionTimeoutId = setTimeout(() => {
               setLoadingComplete(true);
               if (onComplete) {
-                const finalTimeoutId = setTimeout(onComplete, 800);
+                // Reduced final timeout from 800ms to 300ms
+                const finalTimeoutId = setTimeout(onComplete, 300);
                 timeoutIds.push(finalTimeoutId);
               }
-            }, 1000);
+            }, 500);
             timeoutIds.push(completionTimeoutId);
           } else {
             addNextMessage();
