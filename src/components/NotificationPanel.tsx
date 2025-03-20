@@ -38,7 +38,7 @@ const NotificationPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#111]/80 border border-[#33FF00]/20 p-4 pt-2 w-full mx-auto flex flex-col fade-in-delay-1 relative overflow-hidden">
+    <div className="bg-[#111]/80 border border-[#33FF00]/20 p-4 pt-2 w-full h-full mx-auto flex flex-col fade-in-delay-1 relative overflow-hidden">
       {/* Console Header Bar */}
       <div className="flex items-center justify-between mb-4 border-b border-[#33FF00]/30 pb-2">
         <div className="flex items-center">
@@ -72,14 +72,14 @@ const NotificationPanel: React.FC = () => {
             </div>
           </div>
           
-          <ScrollArea className="flex-1 pr-2 max-h-[250px] md:max-h-[350px]">
+          <ScrollArea className="flex-1 pr-2 max-h-[250px] md:max-h-[350px] touch-auto overflow-y-auto">
             <div className="font-micro text-[#33FF00]/90 text-xs md:text-sm whitespace-pre-line">
               {selectedNotification.content}
             </div>
           </ScrollArea>
         </div>
       ) : (
-        <ScrollArea className="pr-4 flex-1 max-h-[300px] md:max-h-[400px]">
+        <ScrollArea className="pr-4 flex-1 max-h-[300px] md:max-h-[400px] touch-auto overflow-y-auto">
           {/* Email Section */}
           <div className="mb-4 md:mb-6">
             <div className="flex items-center mb-2 md:mb-3">
