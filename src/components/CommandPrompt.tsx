@@ -25,13 +25,8 @@ const CommandPrompt: React.FC<CommandPromptProps> = ({ isOpen, onClose }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    // Auto-focus input when component mounts or isOpen changes
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
+  // Removed auto-focus effect to prevent keyboard from automatically appearing on mobile
+  
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -146,7 +141,7 @@ const CommandPrompt: React.FC<CommandPromptProps> = ({ isOpen, onClose }) => {
         )}
       </div>
       
-      {/* Command input area */}
+      {/* Command input area with larger font size */}
       <div className="flex items-center border-t border-[#33FF00]/30 pt-1">
         <span className="text-[#33FF00] mr-2">C:\&gt;</span>
         <input
@@ -155,10 +150,11 @@ const CommandPrompt: React.FC<CommandPromptProps> = ({ isOpen, onClose }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="bg-transparent border-none outline-none text-[#33FF00] font-micro text-sm w-full"
+          className="bg-transparent border-none outline-none text-[#33FF00] font-micro text-base md:text-lg w-full"
           placeholder="Type command..."
           spellCheck="false"
           autoComplete="off"
+          autoFocus={false} // Prevent auto focus
         />
       </div>
       
