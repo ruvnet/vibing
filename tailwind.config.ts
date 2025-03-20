@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				cyber: {
+					black: '#111111',
+					darkgray: '#222222',
+					neon: '#d2ff3a',
+					muted: 'rgba(210, 255, 58, 0.7)',
+					dim: 'rgba(210, 255, 58, 0.4)'
 				}
 			},
 			borderRadius: {
@@ -84,13 +92,46 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-neon': {
+					'0%, 100%': {
+						opacity: 1
+					},
+					'50%': {
+						opacity: 0.7
+					}
+				},
+				'float-in': {
+					'0%': {
+						opacity: 0,
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: 1,
+						transform: 'translateY(0)'
+					}
+				},
+				'glow': {
+					'0%, 100%': {
+						textShadow: '0 0 5px rgba(210, 255, 58, 0.3), 0 0 10px rgba(210, 255, 58, 0.2)'
+					},
+					'50%': {
+						textShadow: '0 0 10px rgba(210, 255, 58, 0.5), 0 0 20px rgba(210, 255, 58, 0.3)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-neon': 'pulse-neon 2s infinite ease-in-out',
+				'float-in': 'float-in 0.6s ease-out forwards',
+				'glow': 'glow 3s infinite ease-in-out'
+			},
+			fontFamily: {
+				'mono': ['JetBrains Mono', 'monospace']
 			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
